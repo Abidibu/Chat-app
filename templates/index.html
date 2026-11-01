@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ app_name }}</title>
+    <link rel="icon" href="/static/img/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+</head>
+<body>
+    <!-- Login -->
+    <div id="login-screen">
+        <div class="login-box">
+            <img class="logo" src="/static/img/logo.svg" alt="logo">
+            <h1>{{ app_name }}</h1>
+            <p>Add a photo and enter your name</p>
+
+            <div class="avatar-pick" id="avatar-pick" title="Choose profile photo">
+                <span id="avatar-placeholder">📷</span>
+            </div>
+            <input type="file" id="avatar-input" accept="image/*" hidden>
+
+            <input type="text" id="username-input" placeholder="Your name" maxlength="20">
+            <button id="join-btn">Start Chatting</button>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="chat-container" class="hidden">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="me">
+                    <div class="user-avatar small" id="my-avatar"></div>
+                    <h2>{{ app_name }}</h2>
+                </div>
+                <button id="new-room-btn" title="New Group">＋</button>
+            </div>
+
+            <div class="section-title">Online Users</div>
+            <div class="online-list" id="online-list"></div>
+
+            <div class="section-title">Chats</div>
+            <div class="rooms-list" id="rooms-list"></div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <button class="back-btn" id="back-btn">←</button>
+                <div class="chat-info">
+                    <h3 id="chat-title">General</h3>
+                    <span id="status">group chat</span>
+                </div>
+            </div>
+
+            <div class="messages" id="messages"></div>
+
+            <div class="input-area">
+                <button class="icon-btn" id="emoji-btn">😊</button>
+                <button class="icon-btn" id="attach-btn" title="Send photo">📎</button>
+                <input type="file" id="image-input" accept="image/*" hidden>
+                <input type="text" id="message-input" placeholder="Message" autocomplete="off">
+                <button id="send-btn">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Room Modal -->
+    <div id="new-room-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Create New Group</h3>
+            <input type="text" id="new-room-name" placeholder="Group name" maxlength="30">
+            <div class="modal-buttons">
+                <button id="cancel-room-btn">Cancel</button>
+                <button id="create-room-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo viewer -->
+    <div id="lightbox" class="modal hidden"><img id="lightbox-img" alt=""></div>
+
+    <!-- Simple Emoji Picker -->
+    <div id="emoji-picker" class="emoji-picker hidden">
+        <span>😀</span><span>😂</span><span>❤️</span><span>🔥</span>
+        <span>👍</span><span>😊</span><span>🎉</span><span>😎</span>
+        <span>🙏</span><span>💯</span><span>✨</span><span>🚀</span>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
